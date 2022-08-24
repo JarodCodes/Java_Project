@@ -1,17 +1,23 @@
 package com.project.Java_Project.model;
 
+import java.util.Collection;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-
 @Entity
-@Table(name = "registration", uniqueConstraints = @UniqueConstraint(columnNames = ("student_email")))
-public class Registration {
+@Table(name = "student", uniqueConstraints = @UniqueConstraint(columnNames = ("student_email")))
+public class Student {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,20 +35,35 @@ public class Registration {
     @Column(name = "student_password")
     private String student_password;
 
-    @Column(name = "course_name")
-    private String course_name;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
+        name = "course_stud",
+        joinColumns = @JoinColumn(name = "stud_id" , referencedColumnName = "student_id"),
+        inverseJoinColumns = @JoinColumn(name = "course_id" , referencedColumnName = "id")
+    )
+    
+    private Collection<Course> course_stud;
 
-    //private Collection<User> users;
 
-    public Registration(String student_name, String student_address, String student_email, String student_password,
-            String course_name) {
+    public Student(String student_name, String student_address, String student_email, String student_password, Collection<Course> course_stud) {
         this.student_name = student_name;
         this.student_address = student_address;
         this.student_email = student_email;
         this.student_password = student_password;
-        this.course_name = course_name;
+        this.course_stud = course_stud;
+    } 
+
+    public Student() {
+        
     }
 
+    public Collection<Course> getCourse() {
+        return course_stud;
+    }
+
+    public void setCourse(Collection<Course> course_stud) {
+        this.course_stud = course_stud;
+    }
     public Long getStudent_id() {
         return student_id;
     }
@@ -81,13 +102,5 @@ public class Registration {
 
     public void setStudent_password(String student_password) {
         this.student_password = student_password;
-    }
-
-    public String getCourse_name() {
-        return course_name;
-    }
-
-    public void setCourse_name(String course_name) {
-        this.course_name = course_name;
     }
 }
