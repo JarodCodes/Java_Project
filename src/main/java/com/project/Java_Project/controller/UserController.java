@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.Java_Project.Repository.UserRepository;
-import com.project.Java_Project.person.User;
+import com.project.Java_Project.model.User;
 
 
 @Controller
@@ -38,7 +38,7 @@ public class UserController {
     @PostMapping("/saveUser")//form submitted along with user from it
     public String saveUser(@ModelAttribute User user){//user from page bound to user object, returns string because we will redirect
         uRepo.save(user);//saved to database, if there is a existing id it will update the existing entry
-        return "redirect:/list";
+        return "redirect:/ShowUsers";
     }
 
     @GetMapping("/showUpdateForm")
@@ -52,6 +52,6 @@ public class UserController {
     @GetMapping("/deleteUser")//deleteUser page called (its a get because we are returning a page)
     public String deleteUser(@RequestParam Long userId){//triggers delete user method which requests the userId passed from web
         uRepo.deleteById(userId);//search and delete from database using ID
-        return "redirect:/list";//refresh page by redirecting to it
+        return "redirect:/ShowUsers";//refresh page by redirecting to it
     }
 }

@@ -1,6 +1,4 @@
-package com.project.Java_Project.person;
-
-import java.util.Collection;
+package com.project.Java_Project.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,16 +32,15 @@ public class Registration {
     @Column(name = "course_name")
     private String course_name;
 
-    private Collection<User> users;
+    //private Collection<User> users;
 
     public Registration(String student_name, String student_address, String student_email, String student_password,
-            String course_name, Collection<User> users) {
+            String course_name) {
         this.student_name = student_name;
         this.student_address = student_address;
         this.student_email = student_email;
         this.student_password = student_password;
         this.course_name = course_name;
-        this.users = users;
     }
 
     public Long getStudent_id() {
@@ -92,13 +89,5 @@ public class Registration {
 
     public void setCourse_name(String course_name) {
         this.course_name = course_name;
-    }
-
-    public Collection<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Collection<User> users) {
-        this.users = users;
     }
 }
