@@ -11,7 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "tbl_users")
+@Table(name = "students")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,4 +23,5 @@ public class User {
     private String address;
     private String email;
     private String password;
+    private String course;
 }
