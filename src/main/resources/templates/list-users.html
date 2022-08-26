@@ -29,7 +29,7 @@
                     <td th:text="${user.student_address}"></td>
                     <td th:text="${user.student_email}"></td>
                     <td th:text="${user.student_password}"></td>
-                    <!-- <td th:text="${user.course}"></td> -->
+                    <!-- <td th:text="${user.course_name}"></td> -->
                     <td>
                         <a th:href="@{/showUpdateForm(userId=${user.student_id})}" class="btn btn-info">Update</a>
                         <a th:href="@{/deleteUser(userId=${user.student_id})}" class="btn btn-danger ml-2">Delete</a>

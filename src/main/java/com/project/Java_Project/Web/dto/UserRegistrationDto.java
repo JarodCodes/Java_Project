@@ -18,7 +18,10 @@ public class UserRegistrationDto {
         this.password = password;
     }
 
-    
+    public UserRegistrationDto(){
+        
+    }
+
     public String getName() {
         return name;
     }
