@@ -25,14 +25,14 @@
             </thead>
             <tbody>
                 <tr th:each="user: ${users}">
-                    <td th:text="${user.student_name}"></td>
-                    <td th:text="${user.student_address}"></td>
-                    <td th:text="${user.student_email}"></td>
-                    <td th:text="${user.student_password}"></td>
+                    <td th:text="${user.studentname}"></td>
+                    <td th:text="${user.studentaddress}"></td>
+                    <td th:text="${user.studentemail}"></td>
+                    <td th:text="${user.studentpassword}"></td>
                     <!-- <td th:text="${user.course_name}"></td> -->
                     <td>
-                        <a th:href="@{/showUpdateForm(userId=${user.student_id})}" class="btn btn-info">Update</a>
-                        <a th:href="@{/deleteUser(userId=${user.student_id})}" class="btn btn-danger ml-2">Delete</a>
+                        <a th:href="@{/showUpdateForm(userId=${user.studentid})}" class="btn btn-info">Update</a>
+                        <a th:href="@{/deleteUser(userId=${user.studentid})}" class="btn btn-danger ml-2">Delete</a>
                     </td>
                 </tr>
             </tbody>

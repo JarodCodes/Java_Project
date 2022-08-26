@@ -9,5 +9,5 @@ import com.project.Java_Project.model.Student;
 
 @Repository
 public interface UserRepository extends JpaRepository<Student, Long>{
-    
+    Student findByStudentemail(String studentemail);
 }

@@ -12,13 +12,13 @@
         <h2>Add Student</h2>
         <hr/>
         <form th:action="@{saveUser}" th:object="${user}" method="post">
-            <input type="text" th:field="*{student_name}" placeholder="Enter name" class="form-control col-4 mb-4"/>
-            <input type="text" th:field="*{student_address}" placeholder="Enter address" class="form-control col-4 mb-4"/>
-            <input type="text" th:field="*{student_email}" placeholder="Enter email" class="form-control col-4 mb-4"/>
-            <input type="text" th:field="*{student_password}" placeholder="Enter password" class="form-control col-4 mb-4"/>
+            <input type="text" th:field="*{studentname}" placeholder="Enter name" class="form-control col-4 mb-4"/>
+            <input type="text" th:field="*{studentaddress}" placeholder="Enter address" class="form-control col-4 mb-4"/>
+            <input type="text" th:field="*{studentemail}" placeholder="Enter email" class="form-control col-4 mb-4"/>
+            <input type="text" th:field="*{studentpassword}" placeholder="Enter password" class="form-control col-4 mb-4"/>
             <!-- <input type="text" th:field="*{course}" placeholder="Enter course" class="form-control col-4 mb-4"/> -->
             <button class="btn btn-primary" type="submit">Save</button>
-            <input type="hidden" th:field="*{student_id}"/>
+            <input type="hidden" th:field="*{studentid}"/>
         </form>
         <hr/>
         <a th:href="@{/ShowUsers}" class="btn">Back to list</a>

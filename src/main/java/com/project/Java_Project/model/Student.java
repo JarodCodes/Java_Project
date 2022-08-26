@@ -16,41 +16,41 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "student", uniqueConstraints = @UniqueConstraint(columnNames = ("student_email")))
+@Table(name = "student", uniqueConstraints = @UniqueConstraint(columnNames = ("studentemail")))
 public class Student {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long student_id;
+    private Long studentid;
 
-    @Column(name = "student_name")
-    private String student_name;
+    @Column(name = "studentname")
+    private String studentname;
 
-    @Column(name = "student_address")
-    private String student_address;
+    @Column(name = "studentaddress")
+    private String studentaddress;
 
-    @Column(name = "student_email")
-    private String student_email;
+    @Column(name = "studentemail")
+    private String studentemail;
 
-    @Column(name = "student_password")
-    private String student_password;
+    @Column(name = "studentpassword")
+    private String studentpassword;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
-        name = "course_stud",
-        joinColumns = @JoinColumn(name = "stud_id" , referencedColumnName = "student_id"),
-        inverseJoinColumns = @JoinColumn(name = "course_id" , referencedColumnName = "id")
+        name = "coursestud",
+        joinColumns = @JoinColumn(name = "studid" , referencedColumnName = "studentid"),
+        inverseJoinColumns = @JoinColumn(name = "courseid" , referencedColumnName = "id")
     )
     
-    private Collection<Course> course_stud;
+    private Collection<Course> coursestud;
 
 
-    public Student(String student_name, String student_address, String student_email, String student_password, Collection<Course> course_stud) {
-        this.student_name = student_name;
-        this.student_address = student_address;
-        this.student_email = student_email;
-        this.student_password = student_password;
-        this.course_stud = course_stud;
+    public Student(String studentname, String studentaddress, String studentemail, String studentpassword, Collection<Course> coursestud) {
+        this.studentname = studentname;
+        this.studentaddress = studentaddress;
+        this.studentemail = studentemail;
+        this.studentpassword = studentpassword;
+        this.coursestud = coursestud;
     } 
 
     public Student() {
@@ -58,49 +58,49 @@ public class Student {
     }
 
     public Collection<Course> getCourse() {
-        return course_stud;
+        return coursestud;
     }
 
-    public void setCourse(Collection<Course> course_stud) {
-        this.course_stud = course_stud;
+    public void setCourse(Collection<Course> coursestud) {
+        this.coursestud = coursestud;
     }
-    public Long getStudent_id() {
-        return student_id;
-    }
-
-    public void setStudent_id(Long student_id) {
-        this.student_id = student_id;
+    public Long getStudentid() {
+        return studentid;
     }
 
-    public String getStudent_name() {
-        return student_name;
+    public void setStudentid(Long studentid) {
+        this.studentid = studentid;
     }
 
-    public void setStudent_name(String student_name) {
-        this.student_name = student_name;
+    public String getStudentname() {
+        return studentname;
     }
 
-    public String getStudent_address() {
-        return student_address;
+    public void setStudentname(String studentname) {
+        this.studentname = studentname;
     }
 
-    public void setStudent_address(String student_address) {
-        this.student_address = student_address;
+    public String getStudentaddress() {
+        return studentaddress;
     }
 
-    public String getStudent_email() {
-        return student_email;
+    public void setStudentaddress(String studentaddress) {
+        this.studentaddress = studentaddress;
     }
 
-    public void setStudent_email(String student_email) {
-        this.student_email = student_email;
+    public String getStudentemail() {
+        return studentemail;
     }
 
-    public String getStudent_password() {
-        return student_password;
+    public void setStudentemail(String studentemail) {
+        this.studentemail = studentemail;
     }
 
-    public void setStudent_password(String student_password) {
-        this.student_password = student_password;
+    public String getStudentpassword() {
+        return studentpassword;
+    }
+
+    public void setStudentpassword(String studentpassword) {
+        this.studentpassword = studentpassword;
     }
 }

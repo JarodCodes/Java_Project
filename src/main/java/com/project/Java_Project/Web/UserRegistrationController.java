@@ -1,4 +1,4 @@
-package com.project.Java_Project.Web.dto;
+package com.project.Java_Project.Web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.project.Java_Project.Service.UserService;
+import com.project.Java_Project.Web.dto.UserRegistrationDto;
 
 @Controller
 @RequestMapping("/registration")
@@ -31,4 +32,9 @@ public class UserRegistrationController {
         userService.save(registrationDto);
         return "redirect:/registration";
     }
+
+    @GetMapping("/login")
+	public String login() {
+		return "login";
+	}
 }
