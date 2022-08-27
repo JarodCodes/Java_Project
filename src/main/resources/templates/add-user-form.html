@@ -14,7 +14,7 @@
         <form th:action="@{saveUser}" th:object="${user}" method="post">
             <input type="text" th:field="*{studentname}" placeholder="Enter name" class="form-control col-4 mb-4"/>
             <input type="text" th:field="*{studentaddress}" placeholder="Enter address" class="form-control col-4 mb-4"/>
-            <input type="text" th:field="*{studentemail}" placeholder="Enter email" class="form-control col-4 mb-4"/>
+            <input type="text" th:field="*{email" placeholder="Enter email" class="form-control col-4 mb-4"/>
             <input type="text" th:field="*{studentpassword}" placeholder="Enter password" class="form-control col-4 mb-4"/>
             <!-- <input type="text" th:field="*{course}" placeholder="Enter course" class="form-control col-4 mb-4"/> -->
             <button class="btn btn-primary" type="submit">Save</button>

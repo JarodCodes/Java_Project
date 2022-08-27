@@ -22,19 +22,18 @@ import com.project.Java_Project.model.Student;
 @Service
 public class UserServiceImpl implements UserService{
 
-    
-    private UserRepository userRepository;
+	private UserRepository userRepository;
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+	
+	public UserServiceImpl(UserRepository userRepository) {
+		super();
+		this.userRepository = userRepository;
+	}
 
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
-
-    public UserServiceImpl(UserRepository userRepository) {
-        super();
-        this.userRepository = userRepository;
-    }
-
-    @Override
-    public Student save(UserRegistrationDto registrationDto) {
+	@Override
+	public Student save(UserRegistrationDto registrationDto) {
 		Student user = new Student(registrationDto.getName(), 
 				registrationDto.getAddress(), registrationDto.getEmail(),
 				passwordEncoder.encode(registrationDto.getPassword()), Arrays.asList(new Course("PRG381")));
@@ -42,20 +41,18 @@ public class UserServiceImpl implements UserService{
 		return userRepository.save(user);
 	}
 
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        
-        Student stud = userRepository.findByStudentemail(email);
-
-        if (stud ==null) {
-            throw new UsernameNotFoundException("User with that email not found!");
-        }
-
-        return new org.springframework.security.core.userdetails.User(stud.getStudentemail(), stud.getStudentpassword(), mapRolesToAuthorities(stud.getCourse()));
-    }
-    
-    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Course> course){
-		return course.stream().map(role -> new SimpleGrantedAuthority(role.getCoursename())).collect(Collectors.toList());
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+	
+		Student user = userRepository.findByEmail(username);
+		if(user == null) {
+			throw new UsernameNotFoundException("Invalid!!");
+		}
+		return new org.springframework.security.core.userdetails.User(user.getemail(), user.getStudentpassword(), mapRolesToAuthorities(user.getCourse()));		
 	}
-
+	
+	private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Course> roles){
+		return roles.stream().map(role -> new SimpleGrantedAuthority(role.getCoursename())).collect(Collectors.toList());
+	}
+	
 }

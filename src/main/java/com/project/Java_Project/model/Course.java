@@ -27,10 +27,10 @@ public class Course {
         this.coursename = coursename;
     }
 
-    
     public Course() {
         
     }
+    
 
     public Course(String coursename) {
         this.coursename = coursename;

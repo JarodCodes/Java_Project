@@ -16,7 +16,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "student", uniqueConstraints = @UniqueConstraint(columnNames = ("studentemail")))
+@Table(name = "student", uniqueConstraints = @UniqueConstraint(columnNames = ("email")))
 public class Student {
     
     @Id
@@ -29,8 +29,8 @@ public class Student {
     @Column(name = "studentaddress")
     private String studentaddress;
 
-    @Column(name = "studentemail")
-    private String studentemail;
+    @Column(name = "email")
+    private String email;
 
     @Column(name = "studentpassword")
     private String studentpassword;
@@ -44,18 +44,19 @@ public class Student {
     
     private Collection<Course> coursestud;
 
+    public Student() {
+        
+    }
 
-    public Student(String studentname, String studentaddress, String studentemail, String studentpassword, Collection<Course> coursestud) {
+    public Student(String studentname, String studentaddress, String email, String studentpassword, Collection<Course> coursestud) {
         this.studentname = studentname;
         this.studentaddress = studentaddress;
-        this.studentemail = studentemail;
+        this.email = email;
         this.studentpassword = studentpassword;
         this.coursestud = coursestud;
     } 
 
-    public Student() {
-        
-    }
+    
 
     public Collection<Course> getCourse() {
         return coursestud;
@@ -88,12 +89,12 @@ public class Student {
         this.studentaddress = studentaddress;
     }
 
-    public String getStudentemail() {
-        return studentemail;
+    public String getemail() {
+        return email;
     }
 
-    public void setStudentemail(String studentemail) {
-        this.studentemail = studentemail;
+    public void setemail(String email) {
+        this.email = email;
     }
 
     public String getStudentpassword() {
