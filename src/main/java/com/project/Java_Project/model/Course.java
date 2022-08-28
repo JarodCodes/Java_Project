@@ -12,8 +12,8 @@ public class Course {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String coursename;
+    public Long id;
+    public String coursename;
     public Long getId() {
         return id;
     }

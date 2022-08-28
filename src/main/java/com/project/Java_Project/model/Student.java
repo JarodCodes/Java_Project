@@ -21,19 +21,16 @@ public class Student {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long studentid;
+    public Long studentid;
 
-    @Column(name = "studentname")
-    private String studentname;
+    public String studentname;
 
-    @Column(name = "studentaddress")
-    private String studentaddress;
 
-    @Column(name = "email")
-    private String email;
+    public String studentaddress;
 
-    @Column(name = "studentpassword")
-    private String studentpassword;
+    public String email;
+
+    public String studentpassword;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
@@ -42,7 +39,7 @@ public class Student {
         inverseJoinColumns = @JoinColumn(name = "courseid" , referencedColumnName = "id")
     )
     
-    private Collection<Course> coursestud;
+    public Collection<Course> coursestud;
 
     public Student() {
         

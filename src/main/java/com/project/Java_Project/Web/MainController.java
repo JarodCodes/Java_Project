@@ -9,8 +9,9 @@ public class MainController {
 		return "login";
 	}
 
-	@GetMapping("/")
-	public String home() {
-		return "list-users";
-	}
+	// @GetMapping("/")
+	// public String home() {
+	// 	return "index";
+	// }
+
 }

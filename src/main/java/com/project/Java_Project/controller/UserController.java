@@ -20,26 +20,26 @@ public class UserController {
     @Autowired
     private UserRepository uRepo;
 
-    @GetMapping("/ShowUsers")//Returns a list of users ({"/ShowUsers","/","/list"}) vir meer as een adress
+    @GetMapping({"/ShowUsers","/"})//Returns a list of users ({"/ShowUsers","/","/list"}) vir meer as een adress
     public ModelAndView showUser(){
         ModelAndView mav = new ModelAndView("list-users");//attach html to model
         //List<User> list = uRepo.findAll();//attach list of users from database
         List<Student> list = uRepo.findAll();//attach list of users from database
-        mav.addObject("users", list);//pass list of users to model and view object
+        mav.addObject("student", list);//pass list of users to model and view object
         return mav;//returns model and view object with all details attached
     }
 
     @GetMapping("/addUserForm")//shows the add user form
     public ModelAndView addUserForm(){
-        ModelAndView mav = new ModelAndView("add-user-form");
+        ModelAndView mav = new ModelAndView("addStudent");
         Student newUser = new Student();
-        mav.addObject("user", newUser);//new user object sent to the form to fill
+        mav.addObject("stud", newUser);//new user object sent to the form to fill
         return mav;
     }
 
     @PostMapping("/saveUser")//form submitted along with user from it
-    public String saveUser(@ModelAttribute Student user){//user from page bound to user object, returns string because we will redirect
-        uRepo.save(user);//saved to database, if there is a existing id it will update the existing entry
+    public String saveUser(@ModelAttribute Student stud){//user from page bound to user object, returns string because we will redirect
+        uRepo.save(stud);//saved to database, if there is a existing id it will update the existing entry
         return "redirect:/ShowUsers";
     }
 
@@ -47,7 +47,7 @@ public class UserController {
     public ModelAndView showUpdateForm(@RequestParam Long userId){//request userId we created in the web page
         ModelAndView mav = new ModelAndView("add-user-form");
         Student user = uRepo.findById(userId).get();//retreive user from database with ID
-        mav.addObject("user", user);//will send user to the user form filling all fields with found data because the form has the fields specified in its inputs
+        mav.addObject("stud", user);//will send user to the user form filling all fields with found data because the form has the fields specified in its inputs
         return mav;
     }
 
